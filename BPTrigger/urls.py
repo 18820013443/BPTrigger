@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from utils.schedulerTrigger import ScanDatabase
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
-    path('', include('process.urls'))
+    path('', include('process.urls')),
+    path('file/', include('file.urls'))
 ]

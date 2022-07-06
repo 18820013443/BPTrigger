@@ -7,4 +7,5 @@ from account.models import Account
 class Process(models.Model):
     processName = models.CharField(max_length=1000)
     postBody = models.TextField(max_length=100000)
+    functionName = models.CharField(max_length=3000)
     owner = models.ForeignKey(Account, on_delete=models.CASCADE)
