@@ -54,6 +54,7 @@ class AccountAPIView(APIView):
         result['token'] = token
         return Response(result)
 
+
 class AccountDetailAPIView(APIView):
 
     def get(self, request, pk):
@@ -95,7 +96,18 @@ class AccountDetailAPIView(APIView):
                 return Response(result)
 
 
+class AccountInfoView(APIView):
+
+    def get(self, request):
+        data = self.request.user
+        delKeyList = [key for key in data.keys() if key != 'user' and key != 'roles' and key != 'avatar']
+        [data.pop(key) for key in delKeyList]
+        return Response(data)
+
+
 class AccountLoginView(APIView):
+
+    authentication_classes = []
 
     def post(self, request):
         data = request.data

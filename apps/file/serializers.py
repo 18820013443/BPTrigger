@@ -10,6 +10,7 @@ class UploadFileSerializer(ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        name = validated_data['name']
+        fileName = validated_data['fileName']
         file = validated_data['file']
-        return File.objects.create(name=name, file=file)
+        processId = validated_data['process']
+        return File.objects.create(fileName=fileName, file=file, process=processId)

@@ -5,7 +5,7 @@ from jwt import exceptions
 
 JWT_SALT = 'iv%x6xo7l7_u9bf_u!9#g#m*)*=ej@bek5)(@u3kh*72+unjv=kf'
 
-def create_token(payload, timeout=20):
+def create_token(payload, timeout=200000):
     """
     :param payload:  例如：{'user_id':1,'username':'wupeiqi'}用户信息
     :param timeout: token的过期时间，默认20分钟

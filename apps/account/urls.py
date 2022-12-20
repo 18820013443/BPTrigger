@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from django.urls import re_path, include
 from rest_framework import routers
-from .views import AccountAPIView, AccountDetailAPIView, AccountLoginView
+from .views import AccountAPIView, AccountDetailAPIView, AccountLoginView, AccountInfoView
 
 # router = routers.SimpleRouter()
 # router.register(r'account', AccountViewSet, basename='account')
@@ -11,5 +11,6 @@ from .views import AccountAPIView, AccountDetailAPIView, AccountLoginView
 urlpatterns = [
     re_path(r'account/$', AccountAPIView.as_view()),
     re_path(r'account/(?P<pk>\d+)/$', AccountDetailAPIView.as_view()),
-    re_path(r'account/login/$', AccountLoginView.as_view())
+    re_path(r'account/login/$', AccountLoginView.as_view()),
+    re_path(r'account/info/$', AccountInfoView.as_view())
 ]

@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'account',
     'process',
     'file',
-    'rest_framework'
+    'system',
+    'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -133,6 +135,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 # 用于存储文件
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_AUTHENTICATION_CLASSES': ['account.utils.auth.UserAuthentication', ]
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

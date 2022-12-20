@@ -1,10 +1,15 @@
-import email
-from enum import unique
 from rest_framework import serializers
 from .models import Account
-from django.conf import settings
-import re
+from system.models import Role
 from django.contrib.auth.hashers import make_password
+
+
+class RoleSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    status = serializers.BooleanField()
+    description = serializers.CharField()
+    # fields = ['id', 'name', 'status', 'description']
 
 
 class AccountSerializer(serializers.Serializer):
@@ -14,8 +19,15 @@ class AccountSerializer(serializers.Serializer):
 
     # password = serializers.CharField(max_length=100)
     id = serializers.IntegerField(required=False)
+    username = serializers.CharField(required=True)
     email = serializers.EmailField(max_length=100)
     password = serializers.CharField()
+    roles = serializers.SerializerMethodField()
+
+    def get_roles(self, obj):
+        qs = obj.role.all()
+        serializer = RoleSerializer(instance=qs, many=True)
+        return serializer.data
 
     def create(self, validated_data):
         password = validated_data['password']
